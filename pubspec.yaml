@@ -39,8 +39,11 @@ dependencies:
   get_it: ^7.2.0
   freezed_annotation: ^2.2.0
   flutter_bloc: ^8.1.1
+  http: ^0.13.5
+  json_annotation: ^4.7.0
 
 dev_dependencies:
+  json_serializable: ^6.5.4
   flutter_test:
     sdk: flutter
 

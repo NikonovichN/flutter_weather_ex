@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
-import 'package:flutter_weather_ex/core/core.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+
+import 'package:flutter_weather_ex/core/core.dart';
 
 import '../../../domain/domain.dart';
 
@@ -11,10 +12,13 @@ part 'weather_bloc.freezed.dart';
 
 class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
   final GetWeatherUseCase _weatherUseCase;
+  final WeatherAPI _weatherAPI;
 
   WeatherBloc({
     required GetWeatherUseCase getWeatherUseCase,
+    required WeatherAPI weatherAPI,
   })  : _weatherUseCase = getWeatherUseCase,
+        _weatherAPI = weatherAPI,
         super(const _InitialWeatherState()) {
     on<_UpdateWeather>(_updateWeather);
   }
@@ -25,9 +29,14 @@ class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
   ) async {
     emit(const _LoadingWeatherState());
 
-    const tCity = City(name: 'd', coordinates: Coordinates(lat: 32, long: 43));
+    final queryParams = WeatherQueryParams(
+      lat: '52.4313',
+      lon: '30.9937',
+      units: UnitMetrics.metric.name,
+      appid: _weatherAPI.getSecretKey,
+    );
 
-    final weatherStream = _weatherUseCase(tCity);
+    final weatherStream = _weatherUseCase(queryParams);
 
     await emit.forEach(
       weatherStream,

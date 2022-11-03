@@ -1,4 +1,6 @@
-import 'package:flutter_weather_ex/core/core.dart';
+import 'dart:convert';
+
+import 'package:http/http.dart';
 
 import '../../domain/domain.dart';
 import '../datasources/weather_remote_datasource.dart';
@@ -11,16 +13,21 @@ class WeatherRepositoryImpl implements WeatherRepository {
   }) : _dataSource = dataSource;
 
   @override
-  Stream<WeatherEntity> getWeatherData(City city) {
-    _dataSource.getData(city);
+  Stream<WeatherEntity> getWeatherData(WeatherQueryParams queryParams) async* {
+    try {
+      final Response data = await _dataSource.getData(queryParams);
 
-    const tWeatherInfo = WeatherInfo(
-        date: '', temp: '', tempFeelsLike: '', description: '', main: '');
+      if (data.statusCode != 200) {
+        throw Exception();
+      }
 
-    return Stream.value(const WeatherEntity(
-      timeZone: '',
-      currentDate: tWeatherInfo,
-      nextDates: [],
-    ));
+      // TODO: it's make sense to use future
+      yield* Stream.value(
+        WeatherEntity.fromJson(jsonDecode(data.body)),
+      );
+    } catch (_) {
+      // TODO: improve error handling
+      yield* Stream.error('Something went wrong!');
+    }
   }
 }
