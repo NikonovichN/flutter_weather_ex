@@ -40,8 +40,35 @@ class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
 
     await emit.forEach(
       weatherStream,
-      onData: (data) => const _SuccessWeatherState(),
+      onData: (entities) {
+        final todayEntity = entities.weatherList[0];
+
+        return _SuccessWeatherState(
+          today: todayEntity.convertToWeatherStateData(),
+          nextDates: entities.weatherList
+              .sublist(1)
+              .toList()
+              .map((entity) => entity.convertToWeatherStateData())
+              .toList(),
+        );
+      },
       onError: (_, __) => const _ErrorWeatherState(),
+    );
+  }
+}
+
+extension on WeatherDetails {
+  DateTime convertDateToDateTime() {
+    return DateTime.fromMillisecondsSinceEpoch(date.toInt() * 1000);
+  }
+
+  WeatherStateData convertToWeatherStateData() {
+    return WeatherStateData(
+      date: convertDateToDateTime(),
+      temp: main.temp.toString(),
+      tempFeelsLike: main.tempFeelsLike.toString(),
+      status: status[0].main,
+      description: status[0].description,
     );
   }
 }

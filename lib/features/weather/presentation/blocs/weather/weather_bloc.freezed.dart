@@ -171,7 +171,9 @@ mixin _$WeatherState {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() error,
-    required TResult Function() success,
+    required TResult Function(
+            WeatherStateData today, List<WeatherStateData> nextDates)
+        success,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -179,7 +181,8 @@ mixin _$WeatherState {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? error,
-    TResult? Function()? success,
+    TResult? Function(WeatherStateData today, List<WeatherStateData> nextDates)?
+        success,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -187,7 +190,8 @@ mixin _$WeatherState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? error,
-    TResult Function()? success,
+    TResult Function(WeatherStateData today, List<WeatherStateData> nextDates)?
+        success,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -277,7 +281,9 @@ class _$_InitialWeatherState implements _InitialWeatherState {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() error,
-    required TResult Function() success,
+    required TResult Function(
+            WeatherStateData today, List<WeatherStateData> nextDates)
+        success,
   }) {
     return initial();
   }
@@ -288,7 +294,8 @@ class _$_InitialWeatherState implements _InitialWeatherState {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? error,
-    TResult? Function()? success,
+    TResult? Function(WeatherStateData today, List<WeatherStateData> nextDates)?
+        success,
   }) {
     return initial?.call();
   }
@@ -299,7 +306,8 @@ class _$_InitialWeatherState implements _InitialWeatherState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? error,
-    TResult Function()? success,
+    TResult Function(WeatherStateData today, List<WeatherStateData> nextDates)?
+        success,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -391,7 +399,9 @@ class _$_LoadingWeatherState implements _LoadingWeatherState {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() error,
-    required TResult Function() success,
+    required TResult Function(
+            WeatherStateData today, List<WeatherStateData> nextDates)
+        success,
   }) {
     return loading();
   }
@@ -402,7 +412,8 @@ class _$_LoadingWeatherState implements _LoadingWeatherState {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? error,
-    TResult? Function()? success,
+    TResult? Function(WeatherStateData today, List<WeatherStateData> nextDates)?
+        success,
   }) {
     return loading?.call();
   }
@@ -413,7 +424,8 @@ class _$_LoadingWeatherState implements _LoadingWeatherState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? error,
-    TResult Function()? success,
+    TResult Function(WeatherStateData today, List<WeatherStateData> nextDates)?
+        success,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -505,7 +517,9 @@ class _$_ErrorWeatherState implements _ErrorWeatherState {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() error,
-    required TResult Function() success,
+    required TResult Function(
+            WeatherStateData today, List<WeatherStateData> nextDates)
+        success,
   }) {
     return error();
   }
@@ -516,7 +530,8 @@ class _$_ErrorWeatherState implements _ErrorWeatherState {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? error,
-    TResult? Function()? success,
+    TResult? Function(WeatherStateData today, List<WeatherStateData> nextDates)?
+        success,
   }) {
     return error?.call();
   }
@@ -527,7 +542,8 @@ class _$_ErrorWeatherState implements _ErrorWeatherState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? error,
-    TResult Function()? success,
+    TResult Function(WeatherStateData today, List<WeatherStateData> nextDates)?
+        success,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -583,6 +599,10 @@ abstract class _$$_SuccessWeatherStateCopyWith<$Res> {
   factory _$$_SuccessWeatherStateCopyWith(_$_SuccessWeatherState value,
           $Res Function(_$_SuccessWeatherState) then) =
       __$$_SuccessWeatherStateCopyWithImpl<$Res>;
+  @useResult
+  $Res call({WeatherStateData today, List<WeatherStateData> nextDates});
+
+  $WeatherStateDataCopyWith<$Res> get today;
 }
 
 /// @nodoc
@@ -592,26 +612,75 @@ class __$$_SuccessWeatherStateCopyWithImpl<$Res>
   __$$_SuccessWeatherStateCopyWithImpl(_$_SuccessWeatherState _value,
       $Res Function(_$_SuccessWeatherState) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? today = null,
+    Object? nextDates = null,
+  }) {
+    return _then(_$_SuccessWeatherState(
+      today: null == today
+          ? _value.today
+          : today // ignore: cast_nullable_to_non_nullable
+              as WeatherStateData,
+      nextDates: null == nextDates
+          ? _value._nextDates
+          : nextDates // ignore: cast_nullable_to_non_nullable
+              as List<WeatherStateData>,
+    ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $WeatherStateDataCopyWith<$Res> get today {
+    return $WeatherStateDataCopyWith<$Res>(_value.today, (value) {
+      return _then(_value.copyWith(today: value));
+    });
+  }
 }
 
 /// @nodoc
 
 class _$_SuccessWeatherState implements _SuccessWeatherState {
-  const _$_SuccessWeatherState();
+  const _$_SuccessWeatherState(
+      {required this.today, required final List<WeatherStateData> nextDates})
+      : _nextDates = nextDates;
+
+  @override
+  final WeatherStateData today;
+  final List<WeatherStateData> _nextDates;
+  @override
+  List<WeatherStateData> get nextDates {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_nextDates);
+  }
 
   @override
   String toString() {
-    return 'WeatherState.success()';
+    return 'WeatherState.success(today: $today, nextDates: $nextDates)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_SuccessWeatherState);
+        (other.runtimeType == runtimeType &&
+            other is _$_SuccessWeatherState &&
+            (identical(other.today, today) || other.today == today) &&
+            const DeepCollectionEquality()
+                .equals(other._nextDates, _nextDates));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(
+      runtimeType, today, const DeepCollectionEquality().hash(_nextDates));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_SuccessWeatherStateCopyWith<_$_SuccessWeatherState> get copyWith =>
+      __$$_SuccessWeatherStateCopyWithImpl<_$_SuccessWeatherState>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -619,9 +688,11 @@ class _$_SuccessWeatherState implements _SuccessWeatherState {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() error,
-    required TResult Function() success,
+    required TResult Function(
+            WeatherStateData today, List<WeatherStateData> nextDates)
+        success,
   }) {
-    return success();
+    return success(today, nextDates);
   }
 
   @override
@@ -630,9 +701,10 @@ class _$_SuccessWeatherState implements _SuccessWeatherState {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? error,
-    TResult? Function()? success,
+    TResult? Function(WeatherStateData today, List<WeatherStateData> nextDates)?
+        success,
   }) {
-    return success?.call();
+    return success?.call(today, nextDates);
   }
 
   @override
@@ -641,11 +713,12 @@ class _$_SuccessWeatherState implements _SuccessWeatherState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? error,
-    TResult Function()? success,
+    TResult Function(WeatherStateData today, List<WeatherStateData> nextDates)?
+        success,
     required TResult orElse(),
   }) {
     if (success != null) {
-      return success();
+      return success(today, nextDates);
     }
     return orElse();
   }
@@ -689,5 +762,218 @@ class _$_SuccessWeatherState implements _SuccessWeatherState {
 }
 
 abstract class _SuccessWeatherState implements WeatherState {
-  const factory _SuccessWeatherState() = _$_SuccessWeatherState;
+  const factory _SuccessWeatherState(
+          {required final WeatherStateData today,
+          required final List<WeatherStateData> nextDates}) =
+      _$_SuccessWeatherState;
+
+  WeatherStateData get today;
+  List<WeatherStateData> get nextDates;
+  @JsonKey(ignore: true)
+  _$$_SuccessWeatherStateCopyWith<_$_SuccessWeatherState> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+mixin _$WeatherStateData {
+  DateTime get date => throw _privateConstructorUsedError;
+  String get temp => throw _privateConstructorUsedError;
+  String get tempFeelsLike => throw _privateConstructorUsedError;
+  String get status => throw _privateConstructorUsedError;
+  String get description => throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $WeatherStateDataCopyWith<WeatherStateData> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $WeatherStateDataCopyWith<$Res> {
+  factory $WeatherStateDataCopyWith(
+          WeatherStateData value, $Res Function(WeatherStateData) then) =
+      _$WeatherStateDataCopyWithImpl<$Res, WeatherStateData>;
+  @useResult
+  $Res call(
+      {DateTime date,
+      String temp,
+      String tempFeelsLike,
+      String status,
+      String description});
+}
+
+/// @nodoc
+class _$WeatherStateDataCopyWithImpl<$Res, $Val extends WeatherStateData>
+    implements $WeatherStateDataCopyWith<$Res> {
+  _$WeatherStateDataCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? date = null,
+    Object? temp = null,
+    Object? tempFeelsLike = null,
+    Object? status = null,
+    Object? description = null,
+  }) {
+    return _then(_value.copyWith(
+      date: null == date
+          ? _value.date
+          : date // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      temp: null == temp
+          ? _value.temp
+          : temp // ignore: cast_nullable_to_non_nullable
+              as String,
+      tempFeelsLike: null == tempFeelsLike
+          ? _value.tempFeelsLike
+          : tempFeelsLike // ignore: cast_nullable_to_non_nullable
+              as String,
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as String,
+      description: null == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$_WeatherStateDataCopyWith<$Res>
+    implements $WeatherStateDataCopyWith<$Res> {
+  factory _$$_WeatherStateDataCopyWith(
+          _$_WeatherStateData value, $Res Function(_$_WeatherStateData) then) =
+      __$$_WeatherStateDataCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {DateTime date,
+      String temp,
+      String tempFeelsLike,
+      String status,
+      String description});
+}
+
+/// @nodoc
+class __$$_WeatherStateDataCopyWithImpl<$Res>
+    extends _$WeatherStateDataCopyWithImpl<$Res, _$_WeatherStateData>
+    implements _$$_WeatherStateDataCopyWith<$Res> {
+  __$$_WeatherStateDataCopyWithImpl(
+      _$_WeatherStateData _value, $Res Function(_$_WeatherStateData) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? date = null,
+    Object? temp = null,
+    Object? tempFeelsLike = null,
+    Object? status = null,
+    Object? description = null,
+  }) {
+    return _then(_$_WeatherStateData(
+      date: null == date
+          ? _value.date
+          : date // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      temp: null == temp
+          ? _value.temp
+          : temp // ignore: cast_nullable_to_non_nullable
+              as String,
+      tempFeelsLike: null == tempFeelsLike
+          ? _value.tempFeelsLike
+          : tempFeelsLike // ignore: cast_nullable_to_non_nullable
+              as String,
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as String,
+      description: null == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_WeatherStateData implements _WeatherStateData {
+  const _$_WeatherStateData(
+      {required this.date,
+      required this.temp,
+      required this.tempFeelsLike,
+      required this.status,
+      required this.description});
+
+  @override
+  final DateTime date;
+  @override
+  final String temp;
+  @override
+  final String tempFeelsLike;
+  @override
+  final String status;
+  @override
+  final String description;
+
+  @override
+  String toString() {
+    return 'WeatherStateData(date: $date, temp: $temp, tempFeelsLike: $tempFeelsLike, status: $status, description: $description)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_WeatherStateData &&
+            (identical(other.date, date) || other.date == date) &&
+            (identical(other.temp, temp) || other.temp == temp) &&
+            (identical(other.tempFeelsLike, tempFeelsLike) ||
+                other.tempFeelsLike == tempFeelsLike) &&
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.description, description) ||
+                other.description == description));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, date, temp, tempFeelsLike, status, description);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_WeatherStateDataCopyWith<_$_WeatherStateData> get copyWith =>
+      __$$_WeatherStateDataCopyWithImpl<_$_WeatherStateData>(this, _$identity);
+}
+
+abstract class _WeatherStateData implements WeatherStateData {
+  const factory _WeatherStateData(
+      {required final DateTime date,
+      required final String temp,
+      required final String tempFeelsLike,
+      required final String status,
+      required final String description}) = _$_WeatherStateData;
+
+  @override
+  DateTime get date;
+  @override
+  String get temp;
+  @override
+  String get tempFeelsLike;
+  @override
+  String get status;
+  @override
+  String get description;
+  @override
+  @JsonKey(ignore: true)
+  _$$_WeatherStateDataCopyWith<_$_WeatherStateData> get copyWith =>
+      throw _privateConstructorUsedError;
 }
