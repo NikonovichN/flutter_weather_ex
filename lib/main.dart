@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_weather_ex/features/weather/weather.dart';
 
 import 'core/core.dart';
+import 'features/cities/cities.dart';
 
 void main() async {
   await const DependencyInjections().registerDependencies();
@@ -18,8 +19,17 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const Scaffold(
-        body: WeatherWrapperWidget(),
+      home: Scaffold(
+        body: Center(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: const [
+              CitiesWrapperWidget(),
+              WeatherWrapperWidget(),
+            ],
+          ),
+        ),
       ),
     );
   }

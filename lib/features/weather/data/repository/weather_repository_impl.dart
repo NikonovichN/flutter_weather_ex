@@ -15,15 +15,15 @@ class WeatherRepositoryImpl implements WeatherRepository {
   @override
   Stream<WeatherEntity> getWeatherData(WeatherQueryParams queryParams) async* {
     try {
-      final Response data = await _dataSource.getData(queryParams);
+      final Response response = await _dataSource.getData(queryParams);
 
-      if (data.statusCode != 200) {
+      if (response.statusCode != 200) {
         throw Exception();
       }
 
       // TODO: it's make sense to use future
       yield* Stream.value(
-        WeatherEntity.fromJson(jsonDecode(data.body)),
+        WeatherEntity.fromJson(jsonDecode(response.body)),
       );
     } catch (_) {
       // TODO: improve error handling
