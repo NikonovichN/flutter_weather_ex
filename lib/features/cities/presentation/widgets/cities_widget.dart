@@ -12,25 +12,26 @@ class CitiesWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<CitiesBloc, CitiesState>(
       builder: (context, state) => state.maybeMap(
-          orElse: () => const Text('Something went wrong!'),
-          loaded: (state) {
-            if (state.cities.isEmpty) {
-              return const SizedBox.shrink();
-            }
+        orElse: () => const Text('Something went wrong!'),
+        loaded: (state) {
+          if (state.cities.isEmpty) {
+            return const SizedBox.shrink();
+          }
 
-            return DropdownButton<City>(
-              value: state.selectedCity,
-              onChanged: (value) => context
-                  .read<CitiesBloc>()
-                  .add(CitiesEvent.chooseCity(city: value!)),
-              items: state.cities.map<DropdownMenuItem<City>>((value) {
-                return DropdownMenuItem<City>(
-                  value: value,
-                  child: Text(value.name),
-                );
-              }).toList(),
-            );
-          }),
+          return DropdownButton<City>(
+            value: state.selectedCity,
+            onChanged: (value) => context
+                .read<CitiesBloc>()
+                .add(CitiesEvent.chooseCity(city: value!)),
+            items: state.cities.map<DropdownMenuItem<City>>((value) {
+              return DropdownMenuItem<City>(
+                value: value,
+                child: Text(value.name),
+              );
+            }).toList(),
+          );
+        },
+      ),
     );
   }
 }

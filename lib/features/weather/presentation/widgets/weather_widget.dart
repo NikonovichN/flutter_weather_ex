@@ -15,7 +15,7 @@ class WeatherWidget extends StatelessWidget {
           loading: () => const _DisplayText(text: 'loading'),
           error: () => const _DisplayText(text: 'error'),
           success: (state, _) {
-            return const _DisplayText(text: 'success');
+            return _DisplayText(text: state.temp);
           },
         ),
       ),

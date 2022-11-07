@@ -43,15 +43,15 @@ class DependencyInjections {
     );
 
     // Blocs
-    injector.registerFactory<WeatherBloc>(
-      () => WeatherBloc(
+    injector.registerSingleton<WeatherBloc>(
+      WeatherBloc(
         getWeatherUseCase: injector(),
         weatherAPI: injector(),
       ),
     );
 
-    injector.registerFactory<CitiesBloc>(
-      () => CitiesBloc(citiesUseCase: injector()),
+    injector.registerSingleton<CitiesBloc>(
+      CitiesBloc(citiesUseCase: injector()),
     );
   }
 }

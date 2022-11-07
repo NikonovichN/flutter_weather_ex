@@ -45,7 +45,7 @@ class CitiesBloc extends Bloc<CitiesEvent, CitiesState> {
       loaded: (state) => emit(
         state.copyWith(selectedCity: event.city),
       ),
-      orElse: () => const Assert('Something went wrong!'),
+      orElse: () => const Assert('Something went wrong! (Cities Bloc)'),
     );
   }
 }

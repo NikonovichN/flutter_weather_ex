@@ -24,14 +24,14 @@ class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
   }
 
   Future<void> _updateWeather(
-    WeatherEvent event,
+    _UpdateWeather event,
     Emitter<WeatherState> emit,
   ) async {
     emit(const _LoadingWeatherState());
 
     final queryParams = WeatherQueryParams(
-      lat: '52.4313',
-      lon: '30.9937',
+      lat: event.city.coordinates.lat.toString(),
+      lon: event.city.coordinates.long.toString(),
       units: UnitMetrics.metric.name,
       appid: _weatherAPI.getSecretKey,
     );
