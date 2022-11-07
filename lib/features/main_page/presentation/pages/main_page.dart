@@ -14,12 +14,7 @@ class MainPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider<CitiesBloc>(
-          create: (_) => injector<CitiesBloc>()
-            ..add(
-              const CitiesEvent.loadCities(),
-            ),
-        ),
+        BlocProvider<CitiesBloc>(create: (_) => injector<CitiesBloc>()),
         BlocProvider<WeatherBloc>(create: (_) => injector<WeatherBloc>()),
         BlocProvider<MainPageBloc>(
           create: (BuildContext context) {
@@ -44,9 +39,10 @@ class _ListenerWrapper extends StatelessWidget {
       listener: (context, state) {
         state.maybeMap(
           orElse: () {},
-          loaded: (value) => context
-              .read<WeatherBloc>()
-              .add(WeatherEvent.updateWeather(city: value.selectedCity)),
+          loaded: (value) {
+            context.read<WeatherBloc>().add(
+                WeatherEvent.updateWeatherByCity(city: value.selectedCity));
+          },
         );
       },
       child: const DisplayContent(),

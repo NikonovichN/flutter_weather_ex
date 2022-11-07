@@ -33,11 +33,9 @@ class MainPageBloc extends Bloc<MainPageEvent, MainPageState> {
       _weatherBloc.stream,
       (citiesState, weatherState) {
         return citiesState.map(
-          initial: (_) => const MainPageState.loading(),
           loading: (_) => const MainPageState.loading(),
           error: (_) => const MainPageState.error(),
           loaded: (_) => weatherState.map(
-            initial: (_) => const MainPageState.loading(),
             loading: (_) => const MainPageState.loading(),
             error: (_) => const MainPageState.error(),
             success: (_) => const MainPageState.loaded(),

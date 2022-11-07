@@ -183,6 +183,8 @@ abstract class _$$_ChooseCityEventCopyWith<$Res> {
       __$$_ChooseCityEventCopyWithImpl<$Res>;
   @useResult
   $Res call({City city});
+
+  $CityCopyWith<$Res> get city;
 }
 
 /// @nodoc
@@ -204,6 +206,14 @@ class __$$_ChooseCityEventCopyWithImpl<$Res>
           : city // ignore: cast_nullable_to_non_nullable
               as City,
     ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $CityCopyWith<$Res> get city {
+    return $CityCopyWith<$Res>(_value.city, (value) {
+      return _then(_value.copyWith(city: value));
+    });
   }
 }
 
@@ -310,11 +320,25 @@ abstract class _ChooseCityEvent implements CitiesEvent {
       throw _privateConstructorUsedError;
 }
 
+CitiesState _$CitiesStateFromJson(Map<String, dynamic> json) {
+  switch (json['runtimeType']) {
+    case 'loading':
+      return _LoadingCitiesState.fromJson(json);
+    case 'error':
+      return _ErrorCitiesState.fromJson(json);
+    case 'loaded':
+      return _LoadedCitiesState.fromJson(json);
+
+    default:
+      throw CheckedFromJsonException(json, 'runtimeType', 'CitiesState',
+          'Invalid union type "${json['runtimeType']}"!');
+  }
+}
+
 /// @nodoc
 mixin _$CitiesState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() error,
     required TResult Function(List<City> cities, City selectedCity) loaded,
@@ -322,7 +346,6 @@ mixin _$CitiesState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? error,
     TResult? Function(List<City> cities, City selectedCity)? loaded,
@@ -330,7 +353,6 @@ mixin _$CitiesState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? error,
     TResult Function(List<City> cities, City selectedCity)? loaded,
@@ -339,7 +361,6 @@ mixin _$CitiesState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_InitialCitiesState value) initial,
     required TResult Function(_LoadingCitiesState value) loading,
     required TResult Function(_ErrorCitiesState value) error,
     required TResult Function(_LoadedCitiesState value) loaded,
@@ -347,7 +368,6 @@ mixin _$CitiesState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_InitialCitiesState value)? initial,
     TResult? Function(_LoadingCitiesState value)? loading,
     TResult? Function(_ErrorCitiesState value)? error,
     TResult? Function(_LoadedCitiesState value)? loaded,
@@ -355,13 +375,13 @@ mixin _$CitiesState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_InitialCitiesState value)? initial,
     TResult Function(_LoadingCitiesState value)? loading,
     TResult Function(_ErrorCitiesState value)? error,
     TResult Function(_LoadedCitiesState value)? loaded,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -383,120 +403,6 @@ class _$CitiesStateCopyWithImpl<$Res, $Val extends CitiesState>
 }
 
 /// @nodoc
-abstract class _$$_InitialCitiesStateCopyWith<$Res> {
-  factory _$$_InitialCitiesStateCopyWith(_$_InitialCitiesState value,
-          $Res Function(_$_InitialCitiesState) then) =
-      __$$_InitialCitiesStateCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$_InitialCitiesStateCopyWithImpl<$Res>
-    extends _$CitiesStateCopyWithImpl<$Res, _$_InitialCitiesState>
-    implements _$$_InitialCitiesStateCopyWith<$Res> {
-  __$$_InitialCitiesStateCopyWithImpl(
-      _$_InitialCitiesState _value, $Res Function(_$_InitialCitiesState) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$_InitialCitiesState implements _InitialCitiesState {
-  const _$_InitialCitiesState();
-
-  @override
-  String toString() {
-    return 'CitiesState.initial()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_InitialCitiesState);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function() error,
-    required TResult Function(List<City> cities, City selectedCity) loaded,
-  }) {
-    return initial();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function()? error,
-    TResult? Function(List<City> cities, City selectedCity)? loaded,
-  }) {
-    return initial?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function()? error,
-    TResult Function(List<City> cities, City selectedCity)? loaded,
-    required TResult orElse(),
-  }) {
-    if (initial != null) {
-      return initial();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_InitialCitiesState value) initial,
-    required TResult Function(_LoadingCitiesState value) loading,
-    required TResult Function(_ErrorCitiesState value) error,
-    required TResult Function(_LoadedCitiesState value) loaded,
-  }) {
-    return initial(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_InitialCitiesState value)? initial,
-    TResult? Function(_LoadingCitiesState value)? loading,
-    TResult? Function(_ErrorCitiesState value)? error,
-    TResult? Function(_LoadedCitiesState value)? loaded,
-  }) {
-    return initial?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_InitialCitiesState value)? initial,
-    TResult Function(_LoadingCitiesState value)? loading,
-    TResult Function(_ErrorCitiesState value)? error,
-    TResult Function(_LoadedCitiesState value)? loaded,
-    required TResult orElse(),
-  }) {
-    if (initial != null) {
-      return initial(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _InitialCitiesState implements CitiesState {
-  const factory _InitialCitiesState() = _$_InitialCitiesState;
-}
-
-/// @nodoc
 abstract class _$$_LoadingCitiesStateCopyWith<$Res> {
   factory _$$_LoadingCitiesStateCopyWith(_$_LoadingCitiesState value,
           $Res Function(_$_LoadingCitiesState) then) =
@@ -513,9 +419,16 @@ class __$$_LoadingCitiesStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$_LoadingCitiesState implements _LoadingCitiesState {
-  const _$_LoadingCitiesState();
+  const _$_LoadingCitiesState({final String? $type})
+      : $type = $type ?? 'loading';
+
+  factory _$_LoadingCitiesState.fromJson(Map<String, dynamic> json) =>
+      _$$_LoadingCitiesStateFromJson(json);
+
+  @JsonKey(name: 'runtimeType')
+  final String $type;
 
   @override
   String toString() {
@@ -528,13 +441,13 @@ class _$_LoadingCitiesState implements _LoadingCitiesState {
         (other.runtimeType == runtimeType && other is _$_LoadingCitiesState);
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => runtimeType.hashCode;
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() error,
     required TResult Function(List<City> cities, City selectedCity) loaded,
@@ -545,7 +458,6 @@ class _$_LoadingCitiesState implements _LoadingCitiesState {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? error,
     TResult? Function(List<City> cities, City selectedCity)? loaded,
@@ -556,7 +468,6 @@ class _$_LoadingCitiesState implements _LoadingCitiesState {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? error,
     TResult Function(List<City> cities, City selectedCity)? loaded,
@@ -571,7 +482,6 @@ class _$_LoadingCitiesState implements _LoadingCitiesState {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_InitialCitiesState value) initial,
     required TResult Function(_LoadingCitiesState value) loading,
     required TResult Function(_ErrorCitiesState value) error,
     required TResult Function(_LoadedCitiesState value) loaded,
@@ -582,7 +492,6 @@ class _$_LoadingCitiesState implements _LoadingCitiesState {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_InitialCitiesState value)? initial,
     TResult? Function(_LoadingCitiesState value)? loading,
     TResult? Function(_ErrorCitiesState value)? error,
     TResult? Function(_LoadedCitiesState value)? loaded,
@@ -593,7 +502,6 @@ class _$_LoadingCitiesState implements _LoadingCitiesState {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_InitialCitiesState value)? initial,
     TResult Function(_LoadingCitiesState value)? loading,
     TResult Function(_ErrorCitiesState value)? error,
     TResult Function(_LoadedCitiesState value)? loaded,
@@ -604,10 +512,20 @@ class _$_LoadingCitiesState implements _LoadingCitiesState {
     }
     return orElse();
   }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_LoadingCitiesStateToJson(
+      this,
+    );
+  }
 }
 
 abstract class _LoadingCitiesState implements CitiesState {
   const factory _LoadingCitiesState() = _$_LoadingCitiesState;
+
+  factory _LoadingCitiesState.fromJson(Map<String, dynamic> json) =
+      _$_LoadingCitiesState.fromJson;
 }
 
 /// @nodoc
@@ -627,9 +545,15 @@ class __$$_ErrorCitiesStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$_ErrorCitiesState implements _ErrorCitiesState {
-  const _$_ErrorCitiesState();
+  const _$_ErrorCitiesState({final String? $type}) : $type = $type ?? 'error';
+
+  factory _$_ErrorCitiesState.fromJson(Map<String, dynamic> json) =>
+      _$$_ErrorCitiesStateFromJson(json);
+
+  @JsonKey(name: 'runtimeType')
+  final String $type;
 
   @override
   String toString() {
@@ -642,13 +566,13 @@ class _$_ErrorCitiesState implements _ErrorCitiesState {
         (other.runtimeType == runtimeType && other is _$_ErrorCitiesState);
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => runtimeType.hashCode;
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() error,
     required TResult Function(List<City> cities, City selectedCity) loaded,
@@ -659,7 +583,6 @@ class _$_ErrorCitiesState implements _ErrorCitiesState {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? error,
     TResult? Function(List<City> cities, City selectedCity)? loaded,
@@ -670,7 +593,6 @@ class _$_ErrorCitiesState implements _ErrorCitiesState {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? error,
     TResult Function(List<City> cities, City selectedCity)? loaded,
@@ -685,7 +607,6 @@ class _$_ErrorCitiesState implements _ErrorCitiesState {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_InitialCitiesState value) initial,
     required TResult Function(_LoadingCitiesState value) loading,
     required TResult Function(_ErrorCitiesState value) error,
     required TResult Function(_LoadedCitiesState value) loaded,
@@ -696,7 +617,6 @@ class _$_ErrorCitiesState implements _ErrorCitiesState {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_InitialCitiesState value)? initial,
     TResult? Function(_LoadingCitiesState value)? loading,
     TResult? Function(_ErrorCitiesState value)? error,
     TResult? Function(_LoadedCitiesState value)? loaded,
@@ -707,7 +627,6 @@ class _$_ErrorCitiesState implements _ErrorCitiesState {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_InitialCitiesState value)? initial,
     TResult Function(_LoadingCitiesState value)? loading,
     TResult Function(_ErrorCitiesState value)? error,
     TResult Function(_LoadedCitiesState value)? loaded,
@@ -718,10 +637,20 @@ class _$_ErrorCitiesState implements _ErrorCitiesState {
     }
     return orElse();
   }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_ErrorCitiesStateToJson(
+      this,
+    );
+  }
 }
 
 abstract class _ErrorCitiesState implements CitiesState {
   const factory _ErrorCitiesState() = _$_ErrorCitiesState;
+
+  factory _ErrorCitiesState.fromJson(Map<String, dynamic> json) =
+      _$_ErrorCitiesState.fromJson;
 }
 
 /// @nodoc
@@ -731,6 +660,8 @@ abstract class _$$_LoadedCitiesStateCopyWith<$Res> {
       __$$_LoadedCitiesStateCopyWithImpl<$Res>;
   @useResult
   $Res call({List<City> cities, City selectedCity});
+
+  $CityCopyWith<$Res> get selectedCity;
 }
 
 /// @nodoc
@@ -758,14 +689,28 @@ class __$$_LoadedCitiesStateCopyWithImpl<$Res>
               as City,
     ));
   }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $CityCopyWith<$Res> get selectedCity {
+    return $CityCopyWith<$Res>(_value.selectedCity, (value) {
+      return _then(_value.copyWith(selectedCity: value));
+    });
+  }
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$_LoadedCitiesState implements _LoadedCitiesState {
   const _$_LoadedCitiesState(
-      {required final List<City> cities, required this.selectedCity})
-      : _cities = cities;
+      {required final List<City> cities,
+      required this.selectedCity,
+      final String? $type})
+      : _cities = cities,
+        $type = $type ?? 'loaded';
+
+  factory _$_LoadedCitiesState.fromJson(Map<String, dynamic> json) =>
+      _$$_LoadedCitiesStateFromJson(json);
 
   final List<City> _cities;
   @override
@@ -776,6 +721,9 @@ class _$_LoadedCitiesState implements _LoadedCitiesState {
 
   @override
   final City selectedCity;
+
+  @JsonKey(name: 'runtimeType')
+  final String $type;
 
   @override
   String toString() {
@@ -792,6 +740,7 @@ class _$_LoadedCitiesState implements _LoadedCitiesState {
                 other.selectedCity == selectedCity));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType, const DeepCollectionEquality().hash(_cities), selectedCity);
@@ -806,7 +755,6 @@ class _$_LoadedCitiesState implements _LoadedCitiesState {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() error,
     required TResult Function(List<City> cities, City selectedCity) loaded,
@@ -817,7 +765,6 @@ class _$_LoadedCitiesState implements _LoadedCitiesState {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? error,
     TResult? Function(List<City> cities, City selectedCity)? loaded,
@@ -828,7 +775,6 @@ class _$_LoadedCitiesState implements _LoadedCitiesState {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? error,
     TResult Function(List<City> cities, City selectedCity)? loaded,
@@ -843,7 +789,6 @@ class _$_LoadedCitiesState implements _LoadedCitiesState {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_InitialCitiesState value) initial,
     required TResult Function(_LoadingCitiesState value) loading,
     required TResult Function(_ErrorCitiesState value) error,
     required TResult Function(_LoadedCitiesState value) loaded,
@@ -854,7 +799,6 @@ class _$_LoadedCitiesState implements _LoadedCitiesState {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_InitialCitiesState value)? initial,
     TResult? Function(_LoadingCitiesState value)? loading,
     TResult? Function(_ErrorCitiesState value)? error,
     TResult? Function(_LoadedCitiesState value)? loaded,
@@ -865,7 +809,6 @@ class _$_LoadedCitiesState implements _LoadedCitiesState {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_InitialCitiesState value)? initial,
     TResult Function(_LoadingCitiesState value)? loading,
     TResult Function(_ErrorCitiesState value)? error,
     TResult Function(_LoadedCitiesState value)? loaded,
@@ -876,12 +819,22 @@ class _$_LoadedCitiesState implements _LoadedCitiesState {
     }
     return orElse();
   }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_LoadedCitiesStateToJson(
+      this,
+    );
+  }
 }
 
 abstract class _LoadedCitiesState implements CitiesState {
   const factory _LoadedCitiesState(
       {required final List<City> cities,
       required final City selectedCity}) = _$_LoadedCitiesState;
+
+  factory _LoadedCitiesState.fromJson(Map<String, dynamic> json) =
+      _$_LoadedCitiesState.fromJson;
 
   List<City> get cities;
   City get selectedCity;

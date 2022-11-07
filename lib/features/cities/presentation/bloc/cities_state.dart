@@ -2,8 +2,6 @@ part of 'cities_bloc.dart';
 
 @freezed
 class CitiesState with _$CitiesState {
-  const factory CitiesState.initial() = _InitialCitiesState;
-
   const factory CitiesState.loading() = _LoadingCitiesState;
 
   const factory CitiesState.error() = _ErrorCitiesState;
@@ -12,4 +10,7 @@ class CitiesState with _$CitiesState {
     required List<City> cities,
     required City selectedCity,
   }) = _LoadedCitiesState;
+
+  factory CitiesState.fromJson(Map<String, dynamic> json) =>
+      _$CitiesStateFromJson(json);
 }

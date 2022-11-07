@@ -11,7 +11,6 @@ class WeatherWidget extends StatelessWidget {
     return BlocBuilder<WeatherBloc, WeatherState>(
       builder: (context, state) => Container(
         child: state.when(
-          initial: () => const _DisplayText(text: 'initial'),
           loading: () => const _DisplayText(text: 'loading'),
           error: () => const _DisplayText(text: 'error'),
           success: (state, _) {
