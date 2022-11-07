@@ -1,5 +1,6 @@
 import 'package:get_it/get_it.dart';
 
+import 'package:flutter_weather_ex/features/cities/cities.dart';
 import 'package:flutter_weather_ex/features/weather/weather.dart';
 
 import '../constants.dart';
@@ -12,10 +13,15 @@ class DependencyInjections {
   Future<void> registerDependencies() async {
     // Stuff
     injector.registerSingleton<WeatherAPI>(WeatherApiImpl());
+    injector.registerSingleton<CitiesAPI>(CitiesApiImpl());
 
     // Data sources
     injector.registerSingleton<WeatherDataSource>(
       WeatherDataSourceImpl(weatherAPI: injector()),
+    );
+
+    injector.registerSingleton<CitiesDataSource>(
+      CitiesDataSourceImpl(citiesAPI: injector()),
     );
 
     // Repositories
@@ -23,9 +29,17 @@ class DependencyInjections {
       WeatherRepositoryImpl(dataSource: injector()),
     );
 
+    injector.registerSingleton<CitiesRepository>(
+      CitiesRepositoryImpl(dataSource: injector()),
+    );
+
     // UseCases
     injector.registerFactory<GetWeatherUseCase>(
       () => GetWeatherUseCase(repository: injector()),
+    );
+
+    injector.registerFactory<GetCitiesUseCase>(
+      () => GetCitiesUseCase(repository: injector()),
     );
 
     // Blocs
@@ -34,6 +48,10 @@ class DependencyInjections {
         getWeatherUseCase: injector(),
         weatherAPI: injector(),
       ),
+    );
+
+    injector.registerFactory<CitiesBloc>(
+      () => CitiesBloc(citiesUseCase: injector()),
     );
   }
 }

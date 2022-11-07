@@ -5,7 +5,7 @@ import 'package:flutter_weather_ex/core/core.dart';
 import '../../domain/usecase/get_weather_usecase.dart';
 
 abstract class WeatherDataSource {
-  Future<dynamic> getData(WeatherQueryParams queryParams);
+  Future<http.Response> getData(WeatherQueryParams queryParams);
 }
 
 class WeatherDataSourceImpl implements WeatherDataSource {
@@ -16,7 +16,7 @@ class WeatherDataSourceImpl implements WeatherDataSource {
   }) : _weatherAPI = weatherAPI;
 
   @override
-  Future<dynamic> getData(WeatherQueryParams queryParams) async {
+  Future<http.Response> getData(WeatherQueryParams queryParams) async {
     return http.get(
       Uri.https(
         _weatherAPI.getBaseURI,
