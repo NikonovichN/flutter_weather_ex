@@ -8,7 +8,7 @@ class WeatherState with _$WeatherState {
 
   const factory WeatherState.success({
     required WeatherStateData currentDate,
-    required List<WeatherStateData> nextDates,
+    required Map<String, List<WeatherStateData>> nextDates,
   }) = _SuccessWeatherState;
 
   factory WeatherState.fromJson(Map<String, dynamic> json) =>
@@ -23,6 +23,7 @@ class WeatherStateData with _$WeatherStateData {
     required String tempFeelsLike,
     required String status,
     required String description,
+    required String icon,
   }) = _WeatherStateData;
 
   factory WeatherStateData.fromJson(Map<String, dynamic> json) =>

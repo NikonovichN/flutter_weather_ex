@@ -12,23 +12,40 @@ class CitiesWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<CitiesBloc, CitiesState>(
       builder: (context, state) => state.maybeMap(
-        orElse: () => const Text('Something went wrong!'),
+        // TODO: add beautiful handle error
+        orElse: () => const Text(
+          'Something went wrong!',
+          style: CustomTextStyle.boldText,
+        ),
         loaded: (state) {
           if (state.cities.isEmpty) {
             return const SizedBox.shrink();
           }
 
-          return DropdownButton<City>(
-            value: state.selectedCity,
-            onChanged: (value) => context
-                .read<CitiesBloc>()
-                .add(CitiesEvent.chooseCity(city: value!)),
-            items: state.cities.map<DropdownMenuItem<City>>((value) {
-              return DropdownMenuItem<City>(
-                value: value,
-                child: Text(value.name),
-              );
-            }).toList(),
+          return StyledBox(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              child: DropdownButton<City>(
+                enableFeedback: true,
+                value: state.selectedCity,
+                dropdownColor: CustomColors.greenMaterial,
+                underline: const SizedBox.shrink(),
+                icon: const Icon(
+                  Icons.arrow_drop_down_circle_outlined,
+                  color: CustomColors.lightGrayMaterial,
+                ),
+                style: CustomTextStyle.boldText.copyWith(fontSize: 20),
+                onChanged: (value) => context.read<CitiesBloc>().add(
+                      CitiesEvent.chooseCity(city: value!),
+                    ),
+                items: state.cities.map<DropdownMenuItem<City>>((value) {
+                  return DropdownMenuItem<City>(
+                    value: value,
+                    child: Text(value.name),
+                  );
+                }).toList(),
+              ),
+            ),
           );
         },
       ),

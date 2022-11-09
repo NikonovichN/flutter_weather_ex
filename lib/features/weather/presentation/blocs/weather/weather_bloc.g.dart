@@ -34,9 +34,14 @@ _$_SuccessWeatherState _$$_SuccessWeatherStateFromJson(
     _$_SuccessWeatherState(
       currentDate: WeatherStateData.fromJson(
           json['currentDate'] as Map<String, dynamic>),
-      nextDates: (json['nextDates'] as List<dynamic>)
-          .map((e) => WeatherStateData.fromJson(e as Map<String, dynamic>))
-          .toList(),
+      nextDates: (json['nextDates'] as Map<String, dynamic>).map(
+        (k, e) => MapEntry(
+            k,
+            (e as List<dynamic>)
+                .map(
+                    (e) => WeatherStateData.fromJson(e as Map<String, dynamic>))
+                .toList()),
+      ),
       $type: json['runtimeType'] as String?,
     );
 
@@ -55,6 +60,7 @@ _$_WeatherStateData _$$_WeatherStateDataFromJson(Map<String, dynamic> json) =>
       tempFeelsLike: json['tempFeelsLike'] as String,
       status: json['status'] as String,
       description: json['description'] as String,
+      icon: json['icon'] as String,
     );
 
 Map<String, dynamic> _$$_WeatherStateDataToJson(_$_WeatherStateData instance) =>
@@ -64,4 +70,5 @@ Map<String, dynamic> _$$_WeatherStateDataToJson(_$_WeatherStateData instance) =>
       'tempFeelsLike': instance.tempFeelsLike,
       'status': instance.status,
       'description': instance.description,
+      'icon': instance.icon,
     };

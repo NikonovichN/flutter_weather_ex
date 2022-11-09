@@ -50,10 +50,12 @@ _$_WeatherStatus _$$_WeatherStatusFromJson(Map<String, dynamic> json) =>
     _$_WeatherStatus(
       main: json['main'] as String,
       description: json['description'] as String,
+      icon: json['icon'] as String,
     );
 
 Map<String, dynamic> _$$_WeatherStatusToJson(_$_WeatherStatus instance) =>
     <String, dynamic>{
       'main': instance.main,
       'description': instance.description,
+      'icon': instance.icon,
     };

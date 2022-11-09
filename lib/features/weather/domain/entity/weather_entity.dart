@@ -41,6 +41,7 @@ class WeatherStatus with _$WeatherStatus {
   const factory WeatherStatus({
     required String main,
     required String description,
+    required String icon,
   }) = _WeatherStatus;
 
   factory WeatherStatus.fromJson(Map<String, dynamic> json) =>

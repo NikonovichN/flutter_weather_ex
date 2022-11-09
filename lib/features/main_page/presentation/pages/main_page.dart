@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:flutter_weather_ex/core/core.dart';
-import 'package:flutter_weather_ex/features/cities/cities.dart';
-import 'package:flutter_weather_ex/features/weather/weather.dart';
+import 'package:flutter_weather_ex/features/features.dart';
 
 import '../bloc/main_page_bloc.dart';
+import '../widgets/display_content.dart';
 
 class MainPage extends StatelessWidget {
   const MainPage({super.key});
@@ -46,31 +46,6 @@ class _ListenerWrapper extends StatelessWidget {
         );
       },
       child: const DisplayContent(),
-    );
-  }
-}
-
-class DisplayContent extends StatelessWidget {
-  const DisplayContent({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return BlocBuilder<MainPageBloc, MainPageState>(
-      builder: (context, state) => Center(
-        child: state.map(
-          initial: (_) => const Text('Loading'),
-          loading: (_) => const Text('Loading'),
-          error: (_) => const Text('Something went wrong!'),
-          loaded: (_) => Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisSize: MainAxisSize.min,
-            children: const [
-              CitiesWidget(),
-              WeatherWidget(),
-            ],
-          ),
-        ),
-      ),
     );
   }
 }
