@@ -35,8 +35,7 @@ class CitiesBloc extends HydratedBloc<CitiesEvent, CitiesState> {
       stream,
       onData: (entity) => _LoadedCitiesState(
         cities: entity.cities.map((city) => city.convertToStateCity()).toList(),
-        selectedCity: state.maybeMap(
-              orElse: () => null,
+        selectedCity: state.mapOrNull(
               loaded: (state) => state.selectedCity,
             ) ??
             entity.cities[0].convertToStateCity(),
