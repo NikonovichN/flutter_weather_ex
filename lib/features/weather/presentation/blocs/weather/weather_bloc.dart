@@ -42,18 +42,15 @@ class WeatherBloc extends HydratedBloc<WeatherEvent, WeatherState> {
 
     await emit.forEach(
       weatherStream,
-      onData: (entities) {
-        final todayEntity = entities.weatherList[0];
-
-        return _SuccessWeatherState(
-          currentDate: todayEntity.convertToWeatherStateData(),
-          nextDates: entities.weatherList
-              .sublist(1)
-              .toList()
-              .map((entity) => entity.convertToWeatherStateData())
-              .toList(),
-        );
-      },
+      onData: (entities) => _SuccessWeatherState(
+        currentDate: entities.weatherList[0].convertToWeatherStateData(),
+        nextDates: _getNextDatesFromEntity(
+          entities.weatherList.sublist(
+            1,
+            entities.weatherList.length,
+          ),
+        ),
+      ),
       onError: (_, __) => const _ErrorWeatherState(),
     );
   }
@@ -76,6 +73,28 @@ class WeatherBloc extends HydratedBloc<WeatherEvent, WeatherState> {
 
   @override
   Map<String, dynamic>? toJson(WeatherState state) => state.toJson();
+
+  Map<String, List<WeatherStateData>> _getNextDatesFromEntity(
+    List<WeatherDetails> wetherList,
+  ) {
+    Map<String, List<WeatherStateData>> nextDates = {};
+
+    for (final entity in wetherList) {
+      final stateDate = entity.convertToWeatherStateData();
+      final stampDate =
+          '${stateDate.date.year}.${stateDate.date.month}.${stateDate.date.day}';
+
+      if (stateDate.date.day != DateTime.now().day) {
+        if (nextDates[stampDate] == null) {
+          nextDates[stampDate] = [];
+        }
+
+        nextDates[stampDate]!.add(stateDate);
+      }
+    }
+
+    return nextDates;
+  }
 }
 
 extension on WeatherDetails {
@@ -86,10 +105,11 @@ extension on WeatherDetails {
   WeatherStateData convertToWeatherStateData() {
     return WeatherStateData(
       date: convertDateToDateTime(),
-      temp: main.temp.toString(),
-      tempFeelsLike: main.tempFeelsLike.toString(),
+      temp: '${main.temp.ceil().toString()} °C',
+      tempFeelsLike: '${main.tempFeelsLike.ceil().toString()} °C',
       status: status[0].main,
       description: status[0].description,
+      icon: status[0].icon,
     );
   }
 }

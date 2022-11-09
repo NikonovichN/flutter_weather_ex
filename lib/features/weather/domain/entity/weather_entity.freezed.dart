@@ -539,6 +539,7 @@ WeatherStatus _$WeatherStatusFromJson(Map<String, dynamic> json) {
 mixin _$WeatherStatus {
   String get main => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
+  String get icon => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -552,7 +553,7 @@ abstract class $WeatherStatusCopyWith<$Res> {
           WeatherStatus value, $Res Function(WeatherStatus) then) =
       _$WeatherStatusCopyWithImpl<$Res, WeatherStatus>;
   @useResult
-  $Res call({String main, String description});
+  $Res call({String main, String description, String icon});
 }
 
 /// @nodoc
@@ -570,6 +571,7 @@ class _$WeatherStatusCopyWithImpl<$Res, $Val extends WeatherStatus>
   $Res call({
     Object? main = null,
     Object? description = null,
+    Object? icon = null,
   }) {
     return _then(_value.copyWith(
       main: null == main
@@ -579,6 +581,10 @@ class _$WeatherStatusCopyWithImpl<$Res, $Val extends WeatherStatus>
       description: null == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
+              as String,
+      icon: null == icon
+          ? _value.icon
+          : icon // ignore: cast_nullable_to_non_nullable
               as String,
     ) as $Val);
   }
@@ -592,7 +598,7 @@ abstract class _$$_WeatherStatusCopyWith<$Res>
       __$$_WeatherStatusCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String main, String description});
+  $Res call({String main, String description, String icon});
 }
 
 /// @nodoc
@@ -608,6 +614,7 @@ class __$$_WeatherStatusCopyWithImpl<$Res>
   $Res call({
     Object? main = null,
     Object? description = null,
+    Object? icon = null,
   }) {
     return _then(_$_WeatherStatus(
       main: null == main
@@ -618,6 +625,10 @@ class __$$_WeatherStatusCopyWithImpl<$Res>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
+      icon: null == icon
+          ? _value.icon
+          : icon // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -625,7 +636,8 @@ class __$$_WeatherStatusCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_WeatherStatus implements _WeatherStatus {
-  const _$_WeatherStatus({required this.main, required this.description});
+  const _$_WeatherStatus(
+      {required this.main, required this.description, required this.icon});
 
   factory _$_WeatherStatus.fromJson(Map<String, dynamic> json) =>
       _$$_WeatherStatusFromJson(json);
@@ -634,10 +646,12 @@ class _$_WeatherStatus implements _WeatherStatus {
   final String main;
   @override
   final String description;
+  @override
+  final String icon;
 
   @override
   String toString() {
-    return 'WeatherStatus(main: $main, description: $description)';
+    return 'WeatherStatus(main: $main, description: $description, icon: $icon)';
   }
 
   @override
@@ -647,12 +661,13 @@ class _$_WeatherStatus implements _WeatherStatus {
             other is _$_WeatherStatus &&
             (identical(other.main, main) || other.main == main) &&
             (identical(other.description, description) ||
-                other.description == description));
+                other.description == description) &&
+            (identical(other.icon, icon) || other.icon == icon));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, main, description);
+  int get hashCode => Object.hash(runtimeType, main, description, icon);
 
   @JsonKey(ignore: true)
   @override
@@ -671,7 +686,8 @@ class _$_WeatherStatus implements _WeatherStatus {
 abstract class _WeatherStatus implements WeatherStatus {
   const factory _WeatherStatus(
       {required final String main,
-      required final String description}) = _$_WeatherStatus;
+      required final String description,
+      required final String icon}) = _$_WeatherStatus;
 
   factory _WeatherStatus.fromJson(Map<String, dynamic> json) =
       _$_WeatherStatus.fromJson;
@@ -680,6 +696,8 @@ abstract class _WeatherStatus implements WeatherStatus {
   String get main;
   @override
   String get description;
+  @override
+  String get icon;
   @override
   @JsonKey(ignore: true)
   _$$_WeatherStatusCopyWith<_$_WeatherStatus> get copyWith =>

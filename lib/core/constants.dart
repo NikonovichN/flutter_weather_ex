@@ -4,6 +4,16 @@ enum UnitMetrics {
   imperial,
 }
 
+enum WeatherDay {
+  monday,
+  tuesday,
+  wednesday,
+  thursday,
+  friday,
+  saturday,
+  sunday,
+}
+
 // TODO: Think about a better place for next classes
 abstract class WeatherAPI {
   String get getSecretKey;

@@ -255,8 +255,8 @@ mixin _$WeatherState {
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
     required TResult Function() error,
-    required TResult Function(
-            WeatherStateData currentDate, List<WeatherStateData> nextDates)
+    required TResult Function(WeatherStateData currentDate,
+            Map<String, List<WeatherStateData>> nextDates)
         success,
   }) =>
       throw _privateConstructorUsedError;
@@ -264,8 +264,8 @@ mixin _$WeatherState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
     TResult? Function()? error,
-    TResult? Function(
-            WeatherStateData currentDate, List<WeatherStateData> nextDates)?
+    TResult? Function(WeatherStateData currentDate,
+            Map<String, List<WeatherStateData>> nextDates)?
         success,
   }) =>
       throw _privateConstructorUsedError;
@@ -273,8 +273,8 @@ mixin _$WeatherState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
     TResult Function()? error,
-    TResult Function(
-            WeatherStateData currentDate, List<WeatherStateData> nextDates)?
+    TResult Function(WeatherStateData currentDate,
+            Map<String, List<WeatherStateData>> nextDates)?
         success,
     required TResult orElse(),
   }) =>
@@ -370,8 +370,8 @@ class _$_LoadingWeatherState implements _LoadingWeatherState {
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
     required TResult Function() error,
-    required TResult Function(
-            WeatherStateData currentDate, List<WeatherStateData> nextDates)
+    required TResult Function(WeatherStateData currentDate,
+            Map<String, List<WeatherStateData>> nextDates)
         success,
   }) {
     return loading();
@@ -382,8 +382,8 @@ class _$_LoadingWeatherState implements _LoadingWeatherState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
     TResult? Function()? error,
-    TResult? Function(
-            WeatherStateData currentDate, List<WeatherStateData> nextDates)?
+    TResult? Function(WeatherStateData currentDate,
+            Map<String, List<WeatherStateData>> nextDates)?
         success,
   }) {
     return loading?.call();
@@ -394,8 +394,8 @@ class _$_LoadingWeatherState implements _LoadingWeatherState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
     TResult Function()? error,
-    TResult Function(
-            WeatherStateData currentDate, List<WeatherStateData> nextDates)?
+    TResult Function(WeatherStateData currentDate,
+            Map<String, List<WeatherStateData>> nextDates)?
         success,
     required TResult orElse(),
   }) {
@@ -501,8 +501,8 @@ class _$_ErrorWeatherState implements _ErrorWeatherState {
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
     required TResult Function() error,
-    required TResult Function(
-            WeatherStateData currentDate, List<WeatherStateData> nextDates)
+    required TResult Function(WeatherStateData currentDate,
+            Map<String, List<WeatherStateData>> nextDates)
         success,
   }) {
     return error();
@@ -513,8 +513,8 @@ class _$_ErrorWeatherState implements _ErrorWeatherState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
     TResult? Function()? error,
-    TResult? Function(
-            WeatherStateData currentDate, List<WeatherStateData> nextDates)?
+    TResult? Function(WeatherStateData currentDate,
+            Map<String, List<WeatherStateData>> nextDates)?
         success,
   }) {
     return error?.call();
@@ -525,8 +525,8 @@ class _$_ErrorWeatherState implements _ErrorWeatherState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
     TResult Function()? error,
-    TResult Function(
-            WeatherStateData currentDate, List<WeatherStateData> nextDates)?
+    TResult Function(WeatherStateData currentDate,
+            Map<String, List<WeatherStateData>> nextDates)?
         success,
     required TResult orElse(),
   }) {
@@ -591,7 +591,9 @@ abstract class _$$_SuccessWeatherStateCopyWith<$Res> {
           $Res Function(_$_SuccessWeatherState) then) =
       __$$_SuccessWeatherStateCopyWithImpl<$Res>;
   @useResult
-  $Res call({WeatherStateData currentDate, List<WeatherStateData> nextDates});
+  $Res call(
+      {WeatherStateData currentDate,
+      Map<String, List<WeatherStateData>> nextDates});
 
   $WeatherStateDataCopyWith<$Res> get currentDate;
 }
@@ -618,7 +620,7 @@ class __$$_SuccessWeatherStateCopyWithImpl<$Res>
       nextDates: null == nextDates
           ? _value._nextDates
           : nextDates // ignore: cast_nullable_to_non_nullable
-              as List<WeatherStateData>,
+              as Map<String, List<WeatherStateData>>,
     ));
   }
 
@@ -636,7 +638,7 @@ class __$$_SuccessWeatherStateCopyWithImpl<$Res>
 class _$_SuccessWeatherState implements _SuccessWeatherState {
   const _$_SuccessWeatherState(
       {required this.currentDate,
-      required final List<WeatherStateData> nextDates,
+      required final Map<String, List<WeatherStateData>> nextDates,
       final String? $type})
       : _nextDates = nextDates,
         $type = $type ?? 'success';
@@ -646,11 +648,11 @@ class _$_SuccessWeatherState implements _SuccessWeatherState {
 
   @override
   final WeatherStateData currentDate;
-  final List<WeatherStateData> _nextDates;
+  final Map<String, List<WeatherStateData>> _nextDates;
   @override
-  List<WeatherStateData> get nextDates {
+  Map<String, List<WeatherStateData>> get nextDates {
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_nextDates);
+    return EqualUnmodifiableMapView(_nextDates);
   }
 
   @JsonKey(name: 'runtimeType')
@@ -689,8 +691,8 @@ class _$_SuccessWeatherState implements _SuccessWeatherState {
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
     required TResult Function() error,
-    required TResult Function(
-            WeatherStateData currentDate, List<WeatherStateData> nextDates)
+    required TResult Function(WeatherStateData currentDate,
+            Map<String, List<WeatherStateData>> nextDates)
         success,
   }) {
     return success(currentDate, nextDates);
@@ -701,8 +703,8 @@ class _$_SuccessWeatherState implements _SuccessWeatherState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
     TResult? Function()? error,
-    TResult? Function(
-            WeatherStateData currentDate, List<WeatherStateData> nextDates)?
+    TResult? Function(WeatherStateData currentDate,
+            Map<String, List<WeatherStateData>> nextDates)?
         success,
   }) {
     return success?.call(currentDate, nextDates);
@@ -713,8 +715,8 @@ class _$_SuccessWeatherState implements _SuccessWeatherState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
     TResult Function()? error,
-    TResult Function(
-            WeatherStateData currentDate, List<WeatherStateData> nextDates)?
+    TResult Function(WeatherStateData currentDate,
+            Map<String, List<WeatherStateData>> nextDates)?
         success,
     required TResult orElse(),
   }) {
@@ -769,14 +771,14 @@ class _$_SuccessWeatherState implements _SuccessWeatherState {
 abstract class _SuccessWeatherState implements WeatherState {
   const factory _SuccessWeatherState(
           {required final WeatherStateData currentDate,
-          required final List<WeatherStateData> nextDates}) =
+          required final Map<String, List<WeatherStateData>> nextDates}) =
       _$_SuccessWeatherState;
 
   factory _SuccessWeatherState.fromJson(Map<String, dynamic> json) =
       _$_SuccessWeatherState.fromJson;
 
   WeatherStateData get currentDate;
-  List<WeatherStateData> get nextDates;
+  Map<String, List<WeatherStateData>> get nextDates;
   @JsonKey(ignore: true)
   _$$_SuccessWeatherStateCopyWith<_$_SuccessWeatherState> get copyWith =>
       throw _privateConstructorUsedError;
@@ -793,6 +795,7 @@ mixin _$WeatherStateData {
   String get tempFeelsLike => throw _privateConstructorUsedError;
   String get status => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
+  String get icon => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -811,7 +814,8 @@ abstract class $WeatherStateDataCopyWith<$Res> {
       String temp,
       String tempFeelsLike,
       String status,
-      String description});
+      String description,
+      String icon});
 }
 
 /// @nodoc
@@ -832,6 +836,7 @@ class _$WeatherStateDataCopyWithImpl<$Res, $Val extends WeatherStateData>
     Object? tempFeelsLike = null,
     Object? status = null,
     Object? description = null,
+    Object? icon = null,
   }) {
     return _then(_value.copyWith(
       date: null == date
@@ -854,6 +859,10 @@ class _$WeatherStateDataCopyWithImpl<$Res, $Val extends WeatherStateData>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
+      icon: null == icon
+          ? _value.icon
+          : icon // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
@@ -871,7 +880,8 @@ abstract class _$$_WeatherStateDataCopyWith<$Res>
       String temp,
       String tempFeelsLike,
       String status,
-      String description});
+      String description,
+      String icon});
 }
 
 /// @nodoc
@@ -890,6 +900,7 @@ class __$$_WeatherStateDataCopyWithImpl<$Res>
     Object? tempFeelsLike = null,
     Object? status = null,
     Object? description = null,
+    Object? icon = null,
   }) {
     return _then(_$_WeatherStateData(
       date: null == date
@@ -912,6 +923,10 @@ class __$$_WeatherStateDataCopyWithImpl<$Res>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
+      icon: null == icon
+          ? _value.icon
+          : icon // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -924,7 +939,8 @@ class _$_WeatherStateData implements _WeatherStateData {
       required this.temp,
       required this.tempFeelsLike,
       required this.status,
-      required this.description});
+      required this.description,
+      required this.icon});
 
   factory _$_WeatherStateData.fromJson(Map<String, dynamic> json) =>
       _$$_WeatherStateDataFromJson(json);
@@ -939,10 +955,12 @@ class _$_WeatherStateData implements _WeatherStateData {
   final String status;
   @override
   final String description;
+  @override
+  final String icon;
 
   @override
   String toString() {
-    return 'WeatherStateData(date: $date, temp: $temp, tempFeelsLike: $tempFeelsLike, status: $status, description: $description)';
+    return 'WeatherStateData(date: $date, temp: $temp, tempFeelsLike: $tempFeelsLike, status: $status, description: $description, icon: $icon)';
   }
 
   @override
@@ -956,13 +974,14 @@ class _$_WeatherStateData implements _WeatherStateData {
                 other.tempFeelsLike == tempFeelsLike) &&
             (identical(other.status, status) || other.status == status) &&
             (identical(other.description, description) ||
-                other.description == description));
+                other.description == description) &&
+            (identical(other.icon, icon) || other.icon == icon));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, date, temp, tempFeelsLike, status, description);
+  int get hashCode => Object.hash(
+      runtimeType, date, temp, tempFeelsLike, status, description, icon);
 
   @JsonKey(ignore: true)
   @override
@@ -984,7 +1003,8 @@ abstract class _WeatherStateData implements WeatherStateData {
       required final String temp,
       required final String tempFeelsLike,
       required final String status,
-      required final String description}) = _$_WeatherStateData;
+      required final String description,
+      required final String icon}) = _$_WeatherStateData;
 
   factory _WeatherStateData.fromJson(Map<String, dynamic> json) =
       _$_WeatherStateData.fromJson;
@@ -999,6 +1019,8 @@ abstract class _WeatherStateData implements WeatherStateData {
   String get status;
   @override
   String get description;
+  @override
+  String get icon;
   @override
   @JsonKey(ignore: true)
   _$$_WeatherStateDataCopyWith<_$_WeatherStateData> get copyWith =>
