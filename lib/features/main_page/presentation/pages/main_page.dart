@@ -36,15 +36,11 @@ class _ListenerWrapper extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocListener<CitiesBloc, CitiesState>(
-      listener: (context, state) {
-        state.maybeMap(
-          orElse: () {},
-          loaded: (value) {
-            context.read<WeatherBloc>().add(
-                WeatherEvent.updateWeatherByCity(city: value.selectedCity));
-          },
-        );
-      },
+      listener: (context, state) => state.mapOrNull(
+        loaded: (value) => context
+            .read<WeatherBloc>()
+            .add(WeatherEvent.updateWeatherByCity(city: value.selectedCity)),
+      ),
       child: const DisplayContent(),
     );
   }

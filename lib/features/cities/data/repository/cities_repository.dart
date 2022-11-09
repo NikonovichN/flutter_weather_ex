@@ -18,6 +18,7 @@ class CitiesRepositoryImpl implements CitiesRepository {
         throw Exception();
       }
 
+      // TODO: it makes sense to use future instead
       yield* Stream.value(
         CitiesEntity.fromJson({'cities': jsonDecode(response.body)}),
       );

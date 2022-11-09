@@ -13,49 +13,36 @@ class WeatherWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<WeatherBloc, WeatherState>(
-      builder: (context, state) => Container(
-        child: state.when(
-          // TODO: add correct handle of this states
-          loading: () => const _DisplayText('loading'),
-          error: () => const _DisplayText('error'),
-          success: (_, __) =>
-              MediaQuery.of(context).orientation == Orientation.portrait
-                  ? Column(
-                      children: const [
-                        CurrentDay(),
-                        SizedBox(height: 30),
-                        NextDays()
-                      ],
-                    )
-                  : Row(
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: const [
-                        Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 60),
-                          child: CurrentDay(),
-                        ),
-                        SizedBox(height: 30),
-                        Expanded(child: NextDays())
-                      ],
-                    ),
+    return DefaultTextStyle(
+      style: CustomTextStyle.boldText,
+      child: BlocBuilder<WeatherBloc, WeatherState>(
+        builder: (context, state) => Container(
+          child: state.when(
+            loading: () => const SizedBox.shrink(),
+            // TODO: add correct handle error state
+            error: () => const Text('error'),
+            success: (_, __) =>
+                MediaQuery.of(context).orientation == Orientation.portrait
+                    ? Column(
+                        children: const [
+                          CurrentDay(),
+                          SizedBox(height: 30),
+                          NextDays()
+                        ],
+                      )
+                    : Row(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: const [
+                          Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 60),
+                            child: CurrentDay(),
+                          ),
+                          SizedBox(height: 30),
+                          Expanded(child: NextDays())
+                        ],
+                      ),
+          ),
         ),
-      ),
-    );
-  }
-}
-
-class _DisplayText extends StatelessWidget {
-  final String text;
-
-  const _DisplayText(this.text, {Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: Text(
-        text,
-        style: CustomTextStyle.boldText,
       ),
     );
   }

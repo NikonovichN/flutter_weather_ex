@@ -21,7 +21,7 @@ class WeatherRepositoryImpl implements WeatherRepository {
         throw Exception();
       }
 
-      // TODO: it's make sense to use future
+      // TODO: it makes sense to use future instead
       yield* Stream.value(
         WeatherEntity.fromJson(jsonDecode(response.body)),
       );

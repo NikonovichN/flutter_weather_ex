@@ -23,17 +23,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(
-        primarySwatch: CustomColors.greenAccentMaterial,
-        appBarTheme: const AppBarTheme(
-          systemOverlayStyle: SystemUiOverlayStyle(
-            statusBarIconBrightness: Brightness.dark,
-            statusBarBrightness: Brightness.dark,
-          ),
-        ),
-      ),
+      theme: ThemeData(primarySwatch: CustomColors.greenAccentMaterial),
       home: const Scaffold(
-        body: MainPage(),
+        body: AnnotatedRegion(
+          value: SystemUiOverlayStyle.light,
+          child: MainPage(),
+        ),
       ),
     );
   }
