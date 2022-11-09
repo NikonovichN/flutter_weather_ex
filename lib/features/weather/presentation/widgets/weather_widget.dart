@@ -16,11 +16,29 @@ class WeatherWidget extends StatelessWidget {
     return BlocBuilder<WeatherBloc, WeatherState>(
       builder: (context, state) => Container(
         child: state.when(
+          // TODO: add correct handle of this states
           loading: () => const _DisplayText('loading'),
           error: () => const _DisplayText('error'),
-          success: (_, __) => Column(
-            children: const [CurrentDay(), SizedBox(height: 30), NextDays()],
-          ),
+          success: (_, __) =>
+              MediaQuery.of(context).orientation == Orientation.portrait
+                  ? Column(
+                      children: const [
+                        CurrentDay(),
+                        SizedBox(height: 30),
+                        NextDays()
+                      ],
+                    )
+                  : Row(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: const [
+                        Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 60),
+                          child: CurrentDay(),
+                        ),
+                        SizedBox(height: 30),
+                        Expanded(child: NextDays())
+                      ],
+                    ),
         ),
       ),
     );

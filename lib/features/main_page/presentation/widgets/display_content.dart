@@ -20,26 +20,28 @@ class DisplayContent extends StatelessWidget {
               fit: BoxFit.cover,
             ),
           ),
-          child: AnimatedSwitcher(
-            duration: const Duration(milliseconds: 500),
-            transitionBuilder: (child, animation) => FadeTransition(
-              opacity: animation,
-              child: child,
-            ),
-            child: state.map(
-              initial: (_) => const LoadingIndicator(),
-              loading: (_) => const LoadingIndicator(),
-              // TODO: add beautiful handle error
-              error: (_) => const Text('Something went wrong!'),
-              loaded: (_) => Column(
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: const [
-                  CitiesWidget(),
-                  SizedBox(height: 50),
-                  WeatherWidget(),
-                ],
+          child: SafeArea(
+            child: AnimatedSwitcher(
+              duration: const Duration(milliseconds: 500),
+              transitionBuilder: (child, animation) => FadeTransition(
+                opacity: animation,
+                child: child,
+              ),
+              child: state.map(
+                initial: (_) => const LoadingIndicator(),
+                loading: (_) => const LoadingIndicator(),
+                // TODO: add beautiful handle error
+                error: (_) => const Text('Something went wrong!'),
+                loaded: (_) => Column(
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: const [
+                    CitiesWidget(),
+                    SizedBox(height: 50),
+                    WeatherWidget(),
+                  ],
+                ),
               ),
             ),
           ),
